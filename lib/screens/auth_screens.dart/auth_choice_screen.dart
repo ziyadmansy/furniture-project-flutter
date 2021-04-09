@@ -23,7 +23,12 @@ class _AuthChoiceScreenState extends State<AuthChoiceScreen> {
                 Spacer(
                   flex: 2,
                 ),
-                Text('A new user? Sign Up!'),
+                Text(
+                  'A new user? Sign Up!',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
                 SizedBox(
                   height: 16,
                 ),
@@ -31,8 +36,11 @@ class _AuthChoiceScreenState extends State<AuthChoiceScreen> {
                   width: MediaQuery.of(context).size.width,
                   height: 48,
                   child: ElevatedButton(
-                    child: Text('Sign Up'),
+                    child: Text(
+                      'Sign Up',
+                    ),
                     style: ElevatedButton.styleFrom(
+                      primary: mainColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(kBorderRadius),
                       ),
@@ -46,7 +54,12 @@ class _AuthChoiceScreenState extends State<AuthChoiceScreen> {
                 Spacer(
                   flex: 1,
                 ),
-                Text('Already a member? Sign in!'),
+                Text(
+                  'Already a member? Sign in!',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
                 SizedBox(
                   height: 16,
                 ),
@@ -54,8 +67,11 @@ class _AuthChoiceScreenState extends State<AuthChoiceScreen> {
                   width: MediaQuery.of(context).size.width,
                   height: 48,
                   child: ElevatedButton(
-                    child: Text('Sign In'),
+                    child: Text(
+                      'Sign In',
+                    ),
                     style: ElevatedButton.styleFrom(
+                      primary: mainColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(kBorderRadius),
                       ),

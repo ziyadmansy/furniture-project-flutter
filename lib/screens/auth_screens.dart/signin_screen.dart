@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_app/screens/auth_screens.dart/signup_screen.dart';
+import 'package:furniture_app/screens/home_page_screens.dart/home_screen.dart';
 import 'package:furniture_app/utils/constants.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -63,7 +64,10 @@ class _SignInScreenState extends State<SignInScreen> {
                       height: 48,
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushReplacementNamed(HomeScreen.ROUTE_NAME);
+                        },
                         child: Text('Login'),
                         style: ElevatedButton.styleFrom(
                           primary: mainColor,

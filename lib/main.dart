@@ -11,7 +11,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark().copyWith(
+        accentColor: Colors.lightBlueAccent,
+      ),
       home: SplashScreen(),
       routes: appRoutes(),
     );

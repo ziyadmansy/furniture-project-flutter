@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:furniture_app/screens/auth_screens.dart/signin_screen.dart';
 import 'package:furniture_app/utils/constants.dart';
 
+import '../home_page_screens.dart/home_screen.dart';
+
 class SignUpScreen extends StatefulWidget {
   static const String ROUTE_NAME = '/signUpScreen';
   @override
@@ -142,7 +144,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 48,
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushReplacementNamed(HomeScreen.ROUTE_NAME);
+                        },
                         child: Text('Register'),
                         style: ElevatedButton.styleFrom(
                           primary: mainColor,
