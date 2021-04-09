@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_app/utils/constants.dart';
+import 'package:furniture_app/screens/intro_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String ROUTE_NAME = '/splashScreen';
@@ -9,16 +9,27 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.delayed(
+      Duration(seconds: 1),
+      () {
+        Navigator.of(context).pushReplacementNamed(IntroScreen.ROUTE_NAME);
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Furniture'),
-      ),
       body: Center(
-        child: Text(
-          'Start',
-          style: TextStyle(fontSize: 24.0),
-          textAlign: TextAlign.center,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FlutterLogo(),
+            Text('Our Logo here'),
+          ],
         ),
       ),
     );

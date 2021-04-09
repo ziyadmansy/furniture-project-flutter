@@ -7,7 +7,8 @@ final Color greenColor = Colors.greenAccent[700];
 
 const double kBorderRadius = 12.0;
 
-const String INTERNET_WARNING_MESSAGE = 'Check your internet connection then try again.';
+const String INTERNET_WARNING_MESSAGE =
+    'Check your internet connection then try again.';
 
 const kappBarTextStyle = const TextStyle(
   color: Colors.black,
@@ -21,4 +22,20 @@ const kappBarIconTheme = IconThemeData(
 const appLoader = SpinKitDoubleBounce(
   color: mainColor,
   size: 40.0,
+);
+
+final kEnabledBorder = OutlineInputBorder(
+  borderRadius: BorderRadius.circular(4),
+  borderSide: BorderSide(
+    width: 1,
+    color: Colors.grey,
+  ),
+);
+
+final kFocusedBorder = OutlineInputBorder(
+  borderRadius: BorderRadius.circular(4),
+  borderSide: BorderSide(
+    width: 2,
+    color: mainColor,
+  ),
 );
