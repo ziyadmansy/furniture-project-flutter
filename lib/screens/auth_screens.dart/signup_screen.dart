@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_app/screens/auth_screens.dart/signin_screen.dart';
 import 'package:furniture_app/utils/constants.dart';
 
-class AuthScreen extends StatefulWidget {
-  static const String ROUTE_NAME = '/authScreen';
+class SignUpScreen extends StatefulWidget {
+  static const String ROUTE_NAME = '/signUpScreen';
   @override
-  _AuthScreenState createState() => _AuthScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _AuthScreenState extends State<AuthScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   List<bool> _userTypes = [false, false];
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,20 @@ class _AuthScreenState extends State<AuthScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Sign Up'.toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w900,
+                          color: mainColor,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
                     ToggleButtons(
                       children: [
                         Padding(
@@ -128,7 +143,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
                         onPressed: () {},
-                        child: Text('Log in'),
+                        child: Text('Register'),
                         style: ElevatedButton.styleFrom(
                           primary: mainColor,
                         ),
@@ -146,7 +161,10 @@ class _AuthScreenState extends State<AuthScreen> {
                         child: Text('Already have an account? Sign in'),
                         style: TextButton.styleFrom(
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushReplacementNamed(SignInScreen.ROUTE_NAME);
+                        },
                       ),
                     ),
                   ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_app/screens/auth_screen.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+
+import 'auth_screens.dart/auth_choice_Screen.dart';
 
 class IntroScreen extends StatefulWidget {
   static const String ROUTE_NAME = '/introScreen';
@@ -82,7 +83,8 @@ class _IntroScreenState extends State<IntroScreen> {
         : IntroductionScreen(
             pages: this.pages,
             onDone: () {
-              Navigator.of(context).pushReplacementNamed(AuthScreen.ROUTE_NAME);
+              Navigator.of(context)
+                  .pushReplacementNamed(AuthChoiceScreen.ROUTE_NAME);
             },
             showSkipButton: true,
             showNextButton: true,
@@ -91,7 +93,6 @@ class _IntroScreenState extends State<IntroScreen> {
             next: const Text("Next"),
             done: const Text("Done"),
             initialPage: 0,
-            onSkip: () {},
           );
   }
 }
