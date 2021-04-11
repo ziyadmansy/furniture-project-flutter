@@ -3,12 +3,14 @@ import 'package:furniture_app/screens/home_page_screens.dart/home_page.dart';
 import 'package:furniture_app/screens/home_page_screens.dart/profile_page.dart';
 import 'package:furniture_app/screens/home_page_screens.dart/settings_page.dart';
 import 'package:furniture_app/screens/home_page_screens.dart/trending_page.dart';
+import 'package:furniture_app/widgets/nav_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String ROUTE_NAME = 'homeScreen';
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
+
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
@@ -43,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(_bodyPages[_currentIndex]['title']),
       ),
+      drawer: NavDrawer(),
       body: _bodyPages[_currentIndex]['body'],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
