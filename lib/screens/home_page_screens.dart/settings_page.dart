@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:furniture_app/providers/theme_provider.dart';
 import 'package:furniture_app/utils/constants.dart';
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -8,17 +10,17 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool isDarkMode = false;
   @override
   Widget build(BuildContext context) {
+    final themeData = Provider.of<ThemeProvider>(context);
     return ListView(
       children: [
         SwitchListTile(
           title: Text('Dark Mode'),
-          value: isDarkMode,
+          value: themeData.isDarkMode,
           onChanged: (checked) {
             setState(() {
-              isDarkMode = checked;
+              themeData.toggleDarkMode(checked);
             });
           },
         ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_app/screens/cart_screen.dart';
 import 'package:furniture_app/screens/home_page_screens.dart/home_page.dart';
 import 'package:furniture_app/screens/home_page_screens.dart/profile_page.dart';
 import 'package:furniture_app/screens/home_page_screens.dart/settings_page.dart';
 import 'package:furniture_app/screens/home_page_screens.dart/trending_page.dart';
+import 'package:furniture_app/utils/constants.dart';
 import 'package:furniture_app/widgets/nav_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,7 +12,6 @@ class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
-
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
@@ -47,38 +48,71 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: NavDrawer(),
       body: _bodyPages[_currentIndex]['body'],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (int i) {
-          setState(() {
-            _currentIndex = i;
-          });
-        },
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        type: BottomNavigationBarType.fixed,
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
         elevation: 16,
-        backgroundColor: Colors.grey[900],
-        iconSize: 28,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+        notchMargin: 6,
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                icon: Icon(Icons.home),
+                color: _currentIndex == 0 ? mainColor : Colors.grey,
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 0;
+                  });
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.trending_up),
+                color: _currentIndex == 1 ? mainColor : Colors.grey,
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 1;
+                  });
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.account_circle),
+                color: _currentIndex == 2 ? mainColor : Colors.grey,
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 2;
+                  });
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.menu),
+                color: _currentIndex == 3 ? mainColor : Colors.grey,
+                onPressed: () {
+                  setState(() {
+                    _currentIndex = 3;
+                  });
+                },
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.trending_up),
-            label: 'Trending',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu),
-            label: 'Settings',
-          ),
-        ],
+        ),
       ),
+      floatingActionButton: Container(
+        width: 60,
+        height: 60,
+        child: FloatingActionButton(
+          child: Icon(
+            Icons.shopping_cart_rounded,
+            color: Colors.yellowAccent[100],
+            size: 32,
+          ),
+          backgroundColor: mainColor,
+          onPressed: () {
+            Navigator.of(context).pushNamed(CartScreen.ROUTE_NAME);
+          },
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
