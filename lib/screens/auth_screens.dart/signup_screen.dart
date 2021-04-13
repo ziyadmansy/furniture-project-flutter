@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_app/enums/gender.dart';
 import 'package:furniture_app/screens/auth_screens.dart/signin_screen.dart';
 import 'package:furniture_app/utils/constants.dart';
 
@@ -12,6 +13,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   List<bool> _userTypes = [false, false];
+  Gender _gender = Gender.Male;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -136,6 +138,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         enabledBorder: kEnabledBorder,
                         focusedBorder: kFocusedBorder,
                       ),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    RadioListTile(
+                      value: Gender.Male,
+                      groupValue: _gender,
+                      title: Text('Male'),
+                      contentPadding: const EdgeInsets.all(0),
+                      onChanged: (Gender pickedGender) {
+                        setState(() {
+                          _gender = pickedGender;
+                        });
+                      },
+                    ),
+                    RadioListTile(
+                      value: Gender.Female,
+                      groupValue: _gender,
+                      title: Text('Female'),
+                      contentPadding: const EdgeInsets.all(0),
+                      onChanged: (Gender pickedGender) {
+                        setState(() {
+                          _gender = pickedGender;
+                        });
+                      },
                     ),
                     SizedBox(
                       height: 16,

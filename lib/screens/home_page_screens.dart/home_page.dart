@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:furniture_app/utils/constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -7,135 +8,80 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedChip = 0;
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      child: Column(
-        children: [
-          Container(
-            height: 60,
-            child: ListView.builder(
-              itemCount: 8,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, i) {
-                return Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: ChoiceChip(
-                    label: Text('Wardropes'),
-                    selected: _selectedChip == i,
-                    padding: const EdgeInsets.all(4),
-                    onSelected: (selected) {
-                      setState(() {
-                        _selectedChip = i;
-                      });
-                    },
-                    avatar: CircleAvatar(),
+      padding: const EdgeInsets.all(8.0),
+      child: ListView.builder(
+        itemCount: 16,
+        itemBuilder: (context, i) {
+          return Card(
+            margin: const EdgeInsets.all(8),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            elevation: 8,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text(
+                      i % 2 == 0 ? 'Ziyad Mansy' : 'Scarlet Johanson',
+                      style: TextStyle(
+                        color: mainColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                      ),
+                    ),
+                    subtitle: Text('21 min. ago'),
                   ),
-                );
-              },
-            ),
-          ),
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 2 / 3,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
+                  Container(
+                    height: 175,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      itemBuilder: (context, j) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.network(
+                              'https://azcd.domayne.com.au/media/catalog/category/cache/25/image/1260x/17f82f742ffe127f42dca9de82fb58b1/gp1022021-furniture-hero_1.jpg',
+                              width: 250,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Divider(),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextButton.icon(
+                          onPressed: () {},
+                          label: Text('Comments'),
+                          icon: FaIcon(FontAwesomeIcons.comments),
+                        ),
+                      ),
+                      VerticalDivider(),
+                      Expanded(
+                        child: TextButton.icon(
+                          onPressed: () {},
+                          label: Text('Contact'),
+                          icon: FaIcon(FontAwesomeIcons.envelopeOpenText),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              itemCount: 16,
-              itemBuilder: (context, i) {
-                return Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(kBorderRadius),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Center(
-                              child: FlutterLogo(
-                                size: 48,
-                              ),
-                            ),
-                            Text(
-                              'Ninja Air Nike',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            Text(
-                              '\$240.0',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.yellow,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.yellow,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.yellow,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.yellow,
-                                ),
-                                Icon(Icons.star),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 16,
-                      left: 16,
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: Colors.red[900],
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Center(
-                          child: Text('${i * 15}%'),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 10,
-                      right: 10,
-                      child: IconButton(
-                        icon: Icon(Icons.favorite),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ],
-                );
-              },
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

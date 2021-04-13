@@ -48,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: NavDrawer(),
       body: _bodyPages[_currentIndex]['body'],
+      extendBody: true,
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         elevation: 16,
@@ -103,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: FloatingActionButton(
           child: Icon(
             Icons.shopping_cart_rounded,
-            color: Colors.yellowAccent[100],
+            color: Colors.teal[50],
             size: 32,
           ),
           backgroundColor: mainColor,

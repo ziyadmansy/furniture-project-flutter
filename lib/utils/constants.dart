@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-const Color mainColor = Color(0xffc59433);
+const Color mainColor = Colors.teal;
 final Color redColor = Colors.red[600];
 final Color greenColor = Colors.greenAccent[700];
 

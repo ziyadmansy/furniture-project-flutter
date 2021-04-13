@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:furniture_app/utils/constants.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -72,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Text(
                             'Name'.toUpperCase(),
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w900,
                               fontSize: 24,
                               color: mainColor,
                             ),
@@ -228,7 +229,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Text(
                             'Birthdate'.toUpperCase(),
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w900,
                               fontSize: 24,
                               color: mainColor,
                             ),
@@ -268,6 +269,101 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
               ),
+              Container(
+                width: screenWidth,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(kBorderRadius),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Center(
+                            child: Text(
+                              'Social Media'.toUpperCase(),
+                              style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                fontSize: 24,
+                                color: mainColor,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Website',
+                              labelText: 'Website',
+                              enabledBorder: kEnabledBorder,
+                              focusedBorder: kFocusedBorder,
+                              icon: Icon(
+                                Icons.web,
+                                size: 24,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Linkedin',
+                              labelText: 'Linkedin',
+                              enabledBorder: kEnabledBorder,
+                              focusedBorder: kFocusedBorder,
+                              icon: FaIcon(
+                                FontAwesomeIcons.linkedin,
+                                size: 28,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Facebook',
+                              labelText: 'Facebook',
+                              enabledBorder: kEnabledBorder,
+                              focusedBorder: kFocusedBorder,
+                              icon: FaIcon(
+                                FontAwesomeIcons.facebook,
+                                size: 24,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Container(
+                            height: 40,
+                            child: ElevatedButton.icon(
+                              icon: Icon(
+                                Icons.edit,
+                              ),
+                              label: Text('Save'),
+                              style: ElevatedButton.styleFrom(
+                                primary: mainColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
