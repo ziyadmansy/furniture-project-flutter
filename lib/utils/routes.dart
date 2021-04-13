@@ -4,7 +4,9 @@ import 'package:furniture_app/screens/auth_screens.dart/signin_screen.dart';
 import 'package:furniture_app/screens/auth_screens.dart/signup_screen.dart';
 import 'package:furniture_app/screens/cart_screen.dart';
 import 'package:furniture_app/screens/home_screen.dart';
+import 'package:furniture_app/screens/image_screen.dart';
 import 'package:furniture_app/screens/intro_screen.dart';
+import 'package:furniture_app/screens/post_description_screen.dart';
 import 'package:furniture_app/screens/splash_screen.dart';
 
 Map<String, Widget Function(BuildContext context)> appRoutes() {
@@ -16,5 +18,6 @@ Map<String, Widget Function(BuildContext context)> appRoutes() {
     SignInScreen.ROUTE_NAME: (context) => SignInScreen(),
     HomeScreen.ROUTE_NAME: (context) => HomeScreen(),
     CartScreen.ROUTE_NAME: (context) => CartScreen(),
+    PostsDescriptionScreen.ROUTE_NAME: (context) => PostsDescriptionScreen(),
   };
 }

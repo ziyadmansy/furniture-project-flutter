@@ -95,27 +95,45 @@ class _CartScreenState extends State<CartScreen> {
           ),
           Container(
             width: screenWidth,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(kBorderRadius),
-                topRight: Radius.circular(kBorderRadius),
+            child: Card(
+              elevation: 8,
+              margin: const EdgeInsets.all(0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(kBorderRadius),
+                  topRight: Radius.circular(kBorderRadius),
+                ),
               ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('\$1200.00'),
-                  ElevatedButton(
-                    child: Text('Pay'),
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(kBorderRadius),
-                    )),
-                    onPressed: () {},
-                  ),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          '\$1200.00',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w900,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: ElevatedButton(
+                        child: Text('Pay'),
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(kBorderRadius),
+                          ),
+                          primary: mainColor,
+                        ),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
