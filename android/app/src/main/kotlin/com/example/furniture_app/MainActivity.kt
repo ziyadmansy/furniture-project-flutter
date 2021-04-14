@@ -1,4 +1,4 @@
-package com.example.furniture_app
+package com.ziyadmansy.furniture_app_demo
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -108,10 +108,7 @@ class _HomePageState extends State<HomePage> {
                               await _makePhoneCall('tel:01023843232');
                             },
                             label: Text('Contact'),
-                            icon: FaIcon(
-                              FontAwesomeIcons.phone,
-                              color: Colors.green,
-                            ),
+                            icon: FaIcon(FontAwesomeIcons.phone),
                           ),
                         ),
                       ],
