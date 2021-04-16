@@ -5,7 +5,7 @@ class FullWidthButton extends StatelessWidget {
   final Color btnColor;
   final Color btnTextColor;
   final IconData btnIcon;
-  final onBtnPressed;
+  final void Function() onBtnPressed;
 
   const FullWidthButton({
     @required this.btnText,

@@ -4,7 +4,7 @@ class RoundedRectangleButton extends StatelessWidget {
   final String btnText;
   final Color btnColor;
   final Color btnTextColor;
-  final Function btnPressed;
+  final void Function() btnPressed;
 
   const RoundedRectangleButton({
     this.btnText,

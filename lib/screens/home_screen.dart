@@ -44,10 +44,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_bodyPages[_currentIndex]['title']),
+        title: Text(_bodyPages[_currentIndex]['title'] as String),
       ),
       drawer: NavDrawer(),
-      body: _bodyPages[_currentIndex]['body'],
+      body: _bodyPages[_currentIndex]['body'] as Widget,
       extendBody: true,
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),

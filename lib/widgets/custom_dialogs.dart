@@ -5,7 +5,7 @@ import 'package:furniture_app/utils/constants.dart';
 class Dialogs {
   void errorDialog({
     BuildContext context,
-    Function onConfirm,
+    void Function() onConfirm,
     String title,
     String body,
   }) {
@@ -14,7 +14,6 @@ class Dialogs {
       type: CoolAlertType.error,
       title: title,
       text: body,
-      confirmBtnText: 'Ok',
       onConfirmBtnTap: onConfirm,
       backgroundColor: mainColor,
     );
@@ -24,7 +23,7 @@ class Dialogs {
     BuildContext context,
     String title,
     String body,
-    Function onConfirm,
+    void Function() onConfirm,
     String confirmBtnText = 'OK',
   }) {
     CoolAlert.show(
@@ -42,7 +41,7 @@ class Dialogs {
     BuildContext context,
     String title,
     String body,
-    Function onConfirm,
+    void Function() onConfirm,
     bool dismissable,
   }) {
     CoolAlert.show(
@@ -60,14 +59,13 @@ class Dialogs {
     BuildContext context,
     String title,
     String body,
-    Function onConfirm,
+    void Function() onConfirm,
   }) {
     CoolAlert.show(
       context: context,
       type: CoolAlertType.warning,
       title: title,
       text: body,
-      confirmBtnText: 'Ok',
       onConfirmBtnTap: onConfirm,
       backgroundColor: mainColor,
     );

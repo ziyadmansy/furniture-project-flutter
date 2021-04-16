@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class OvalRoundedButton extends StatelessWidget {
   final Color btnColor;
   final String btnText;
-  final Function onBtnPressed;
+  final void Function() onBtnPressed;
   final Color borderColor;
 
   const OvalRoundedButton({
