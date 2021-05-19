@@ -11,20 +11,32 @@ class NavDrawer extends StatelessWidget {
           children: [
             DrawerHeader(
               child: Center(
-                child: Text(
-                  'Furniture',
-                  style: TextStyle(fontSize: 24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset(
+                      'assets/images/chair_icon.png',
+                      height: 80,
+                      width: 80,
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      'Furniture Home'.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w900,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
               ),
             ),
             ListTile(
-              title: Text('Contact Support'),
-              leading: Icon(Icons.contact_support_outlined),
-              onTap: () {},
-            ),
-            Divider(),
-            ListTile(
-              title: Text('Credits'),
+              title: Text('Team Members'),
               leading: Icon(Icons.recent_actors_outlined),
               onTap: () {
                 showDialog(
@@ -82,7 +94,7 @@ class NavDrawer extends StatelessWidget {
                           Text(
                             'Mohammad Shokr',
                             style: TextStyle(
-                              fontSize: 10,
+                              fontSize: 20.0,
                             ),
                           ),
                         ],
@@ -107,8 +119,12 @@ class NavDrawer extends StatelessWidget {
               onTap: () {
                 showAboutDialog(
                   context: context,
-                  applicationIcon: FlutterLogo(),
-                  applicationName: 'Furniture',
+                  applicationIcon: Image.asset(
+                    'assets/images/chair_icon.png',
+                    width: 60,
+                    height: 60,
+                  ),
+                  applicationName: 'Furniture Home',
                   applicationVersion: '1.0.0',
                   applicationLegalese:
                       '© copyright 2021 furniture.com. All other trademarks and copyrights are the property of their respective owners. All rights reserved.',
@@ -117,10 +133,9 @@ class NavDrawer extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              title: Text('Exit'),
+              title: Text('Logout'),
               leading: Icon(Icons.exit_to_app_outlined),
               onTap: () {
-                SystemNavigator.pop();
               },
             ),
           ],

@@ -10,7 +10,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Future.delayed(
       Duration(seconds: 1),
@@ -22,14 +21,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FlutterLogo(),
-            Text('Our Logo here'),
-          ],
+        child: Image.asset(
+          'assets/images/chair_icon.png',
+          width: screenWidth / 2,
+          height: screenWidth / 2,
         ),
       ),
     );

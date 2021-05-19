@@ -20,25 +20,22 @@ class _AuthChoiceScreenState extends State<AuthChoiceScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Spacer(
+                const Spacer(
                   flex: 2,
                 ),
-                Text(
+                const Text(
                   'A new user? Sign Up!',
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 48,
                   child: ElevatedButton(
-                    child: Text(
-                      'Sign Up',
-                    ),
                     style: ElevatedButton.styleFrom(
                       primary: mainColor,
                       shape: RoundedRectangleBorder(
@@ -49,27 +46,27 @@ class _AuthChoiceScreenState extends State<AuthChoiceScreen> {
                       Navigator.of(context)
                           .pushReplacementNamed(SignUpScreen.ROUTE_NAME);
                     },
+                    child: const Text(
+                      'Sign Up',
+                    ),
                   ),
                 ),
-                Spacer(
+                const Spacer(
                   flex: 1,
                 ),
-                Text(
+                const Text(
                   'Already a member? Sign in!',
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 48,
                   child: ElevatedButton(
-                    child: Text(
-                      'Sign In',
-                    ),
                     style: ElevatedButton.styleFrom(
                       primary: mainColor,
                       shape: RoundedRectangleBorder(
@@ -80,6 +77,9 @@ class _AuthChoiceScreenState extends State<AuthChoiceScreen> {
                       Navigator.of(context)
                           .pushReplacementNamed(SignInScreen.ROUTE_NAME);
                     },
+                    child: const Text(
+                      'Sign In',
+                    ),
                   ),
                 ),
                 Spacer(

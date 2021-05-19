@@ -26,12 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         Divider(),
         ListTile(
-          title: Text('Contact Support'),
-          onTap: () {},
-        ),
-        Divider(),
-        ListTile(
-          title: Text('Credits'),
+          title: Text('Team Members'),
           onTap: () {
             showDialog(
               context: context,
@@ -88,7 +83,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       Text(
                         'Mohammad Shokr',
                         style: TextStyle(
-                          fontSize: 10,
+                          fontSize: 20.0,
                         ),
                       ),
                     ],
@@ -112,8 +107,12 @@ class _SettingsPageState extends State<SettingsPage> {
           onTap: () {
             showAboutDialog(
               context: context,
-              applicationIcon: FlutterLogo(),
-              applicationName: 'Furniture',
+              applicationIcon: Image.asset(
+                'assets/images/chair_icon.png',
+                width: 60,
+                height: 60,
+              ),
+              applicationName: 'Furniture Home',
               applicationVersion: '1.0.0',
               applicationLegalese:
                   '© copyright 2021 furniture.com. All other trademarks and copyrights are the property of their respective owners. All rights reserved.',
@@ -122,9 +121,13 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         Divider(),
         ListTile(
-          title: Text('Exit'),
+          title: Text('Project Proposal'),
+          onTap: () {},
+        ),
+        Divider(),
+        ListTile(
+          title: Text('Logout'),
           onTap: () {
-            SystemNavigator.pop();
           },
         ),
       ],

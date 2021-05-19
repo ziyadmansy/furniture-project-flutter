@@ -36,10 +36,11 @@ class _HomePageState extends State<HomePage> {
           return Card(
             margin: const EdgeInsets.all(8),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(kBorderRadius),
             ),
             elevation: 8,
             child: InkWell(
+              borderRadius: BorderRadius.circular(kBorderRadius),
               onTap: () {
                 Navigator.of(context)
                     .pushNamed(PostsDescriptionScreen.ROUTE_NAME);
@@ -78,7 +79,8 @@ class _HomePageState extends State<HomePage> {
                               child: Hero(
                                 tag: '$i$j',
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderRadius:
+                                      BorderRadius.circular(kBorderRadius),
                                   child: Image.network(
                                     'https://azcd.domayne.com.au/media/catalog/category/cache/25/image/1260x/17f82f742ffe127f42dca9de82fb58b1/gp1022021-furniture-hero_1.jpg',
                                     width: 250,

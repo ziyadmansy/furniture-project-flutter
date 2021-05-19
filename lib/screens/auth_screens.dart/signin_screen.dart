@@ -71,6 +71,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: Text('Login'),
                         style: ElevatedButton.styleFrom(
                           primary: mainColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(kBorderRadius),
+                          ),
                         ),
                       ),
                     ),

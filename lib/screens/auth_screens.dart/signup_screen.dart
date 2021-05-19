@@ -178,6 +178,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: Text('Register'),
                         style: ElevatedButton.styleFrom(
                           primary: mainColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(kBorderRadius),
+                          ),
                         ),
                       ),
                     ),
