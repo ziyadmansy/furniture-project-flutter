@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_app/providers/auth.dart';
+import 'package:furniture_app/providers/posts.dart';
 import 'package:furniture_app/providers/theme_provider.dart';
 import 'package:furniture_app/screens/splash_screen.dart';
 import 'package:furniture_app/utils/constants.dart';
@@ -15,7 +17,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
+          create: (context) => Auth(),
+        ),
+        ChangeNotifierProvider(
           create: (context) => ThemeProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Posts(),
         ),
       ],
       child: Consumer<ThemeProvider>(

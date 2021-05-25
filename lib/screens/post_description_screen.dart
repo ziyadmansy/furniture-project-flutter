@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_app/models/post.dart';
 import 'package:furniture_app/utils/constants.dart';
+import 'package:toast/toast.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PostsDescriptionScreen extends StatefulWidget {
   static const String ROUTE_NAME = '/postDescriptionScreen';
@@ -8,11 +11,26 @@ class PostsDescriptionScreen extends StatefulWidget {
 }
 
 class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
+  Future<void> _launchUrl(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      Toast.show(
+        'Couldn\'t Launch',
+        context,
+        backgroundColor: redColor,
+        textColor: Colors.white,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final postData = ModalRoute.of(context).settings.arguments as Post;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Post Description'),
+        title: Text(postData.title),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -22,13 +40,13 @@ class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.network(
-                  'https://azcd.domayne.com.au/media/catalog/category/cache/25/image/1260x/17f82f742ffe127f42dca9de82fb58b1/gp1022021-furniture-hero_1.jpg',
+                  postData.imgUrl,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Post Title',
+                  postData.title,
                   style: TextStyle(
                     color: mainColor,
                     fontWeight: FontWeight.bold,
@@ -37,7 +55,27 @@ class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
                 ),
               ),
               Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras semper ac urna sit amet consequat. Sed et ipsum lectus. Pellentesque non orci nec dolor congue sagittis eget ut metus. Nunc mollis lorem vitae metus imperdiet suscipit. Vestibulum ac auctor mauris. Maecenas feugiat est at quam porttitor, et gravida tellus mattis. Nullam arcu nulla, facilisis vitae risus vel, viverra aliquet sem. Donec eget euismod tortor, vel finibus orci. Nulla sodales nisi nisi, quis consequat velit pellentesque a. Donec ex orci, tempus non accumsan ut, vulputate nec magna. Pellentesque sit amet suscipit ex. Morbi tincidunt, risus id accumsan dapibus, urna lectus dapibus ante, ultrices ornare augue lacus dictum orci. Morbi elementum elit vel leo tincidunt commodo.',
+                postData.body.replaceAll('<p>', '').replaceAll('</p>', ''),
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              SizedBox(
+                height: 48,
+                width: screenWidth,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    _launchUrl(postData.link);
+                  },
+                  icon: Icon(Icons.link),
+                  label: Text('Visit'),
+                  style: ElevatedButton.styleFrom(
+                    primary: mainColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(kBorderRadius),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
