@@ -164,28 +164,38 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               Divider(),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: TextButton.icon(
-                                      onPressed: () {
-                                        _launchUrl(postsData.posts[i].link);
-                                      },
-                                      label: Text('Vist'),
-                                      icon: Icon(Icons.link),
+                              IntrinsicHeight(
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: TextButton.icon(
+                                        onPressed: () {
+                                          _launchUrl(postsData.posts[i].link);
+                                        },
+                                        label: Text('Visit'),
+                                        icon: Icon(Icons.link),
+                                      ),
                                     ),
-                                  ),
-                                  VerticalDivider(),
-                                  Expanded(
-                                    child: TextButton.icon(
-                                      onPressed: () async {
-                                        await _launchUrl('tel:01023843232');
-                                      },
-                                      label: Text('Contact'),
-                                      icon: FaIcon(FontAwesomeIcons.phone),
+                                    const VerticalDivider(),
+                                    Expanded(
+                                      child: TextButton.icon(
+                                        onPressed: () {},
+                                        label: Text('Buy'),
+                                        icon: Icon(Icons.shopping_bag),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    const VerticalDivider(),
+                                    Expanded(
+                                      child: TextButton.icon(
+                                        onPressed: () async {
+                                          await _launchUrl('tel:01023843232');
+                                        },
+                                        label: Text('Contact'),
+                                        icon: FaIcon(FontAwesomeIcons.phone),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:furniture_app/providers/theme_provider.dart';
+import 'package:furniture_app/screens/auth_screens.dart/auth_choice_screen.dart';
 import 'package:furniture_app/utils/constants.dart';
 import 'package:provider/provider.dart';
 
@@ -156,6 +157,8 @@ class _SettingsPageState extends State<SettingsPage> {
         ListTile(
           title: Text('Logout'),
           onTap: () {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                AuthChoiceScreen.ROUTE_NAME, (route) => false);
           },
         ),
       ],

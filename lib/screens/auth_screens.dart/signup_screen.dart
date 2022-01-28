@@ -49,7 +49,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width / 4,
                             child: Center(
-                              child: const Text('Agent'),
+                              child: const Text('Customer'),
                             ),
                           ),
                         ),

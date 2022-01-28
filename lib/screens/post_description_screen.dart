@@ -55,10 +55,13 @@ class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
                 ),
               ),
               Text(
-                postData.body.replaceAll('<p>', '').replaceAll('</p>', ''),
+                postData.body,
                 style: TextStyle(
                   fontSize: 20,
                 ),
+              ),
+              SizedBox(
+                height: 32,
               ),
               SizedBox(
                 height: 48,
@@ -69,6 +72,24 @@ class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
                   },
                   icon: Icon(Icons.link),
                   label: Text('Visit'),
+                  style: ElevatedButton.styleFrom(
+                    primary: mainColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(kBorderRadius),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              SizedBox(
+                height: 48,
+                width: screenWidth,
+                child: ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.shopping_bag),
+                  label: Text('Add to Cart'),
                   style: ElevatedButton.styleFrom(
                     primary: mainColor,
                     shape: RoundedRectangleBorder(

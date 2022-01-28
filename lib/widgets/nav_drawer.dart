@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_app/screens/auth_screens.dart/auth_choice_screen.dart';
 import 'package:furniture_app/utils/constants.dart';
 
 class NavDrawer extends StatelessWidget {
@@ -162,7 +163,10 @@ class NavDrawer extends StatelessWidget {
             ListTile(
               title: Text('Logout'),
               leading: Icon(Icons.exit_to_app_outlined),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    AuthChoiceScreen.ROUTE_NAME, (route) => false);
+              },
             ),
           ],
         ),
