@@ -22,7 +22,7 @@ class _TrendingPageState extends State<TrendingPage> {
   @override
   void initState() {
     super.initState();
-    getTrendings();
+    // getTrendings();
   }
 
   Future<void> _launchUrl(String url) async {

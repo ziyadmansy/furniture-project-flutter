@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:furniture_app/utils/constants.dart';
 
 class NavDrawer extends StatelessWidget {
@@ -46,7 +45,7 @@ class NavDrawer extends StatelessWidget {
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
+                        children: const [
                           Center(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -71,13 +70,6 @@ class NavDrawer extends StatelessWidget {
                           ),
                           Divider(),
                           Text(
-                            'Aya Abd El-Aziz',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                            ),
-                          ),
-                          Divider(),
-                          Text(
                             'Abd El-Rahman Ezzat',
                             style: TextStyle(
                               fontSize: 20.0,
@@ -92,7 +84,42 @@ class NavDrawer extends StatelessWidget {
                           ),
                           Divider(),
                           Text(
-                            'Mohammad Shokr',
+                            'Mostafa',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          Divider(),
+                          Text(
+                            'Mahmoud Sabry',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          Divider(),
+                          Text(
+                            'Aya Mohammad',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          Divider(),
+                          Text(
+                            'Demiana Moheb',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          Divider(),
+                          Text(
+                            'Fatma Salah',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          Divider(),
+                          Text(
+                            'Maha Mahmoud',
                             style: TextStyle(
                               fontSize: 20.0,
                             ),
@@ -135,8 +162,7 @@ class NavDrawer extends StatelessWidget {
             ListTile(
               title: Text('Logout'),
               leading: Icon(Icons.exit_to_app_outlined),
-              onTap: () {
-              },
+              onTap: () {},
             ),
           ],
         ),

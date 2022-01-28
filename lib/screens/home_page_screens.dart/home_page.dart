@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    getPosts();
+    // getPosts();
   }
 
   Future<void> _launchUrl(String url) async {

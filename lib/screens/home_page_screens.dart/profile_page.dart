@@ -22,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    getProfile();
+    // getProfile();
   }
 
   Future<void> _launchUrl(String url) async {
@@ -389,7 +389,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   children: [
                                     Center(
                                       child: Text(
-                                        'Webiste'.toUpperCase(),
+                                        'Website'.toUpperCase(),
                                         style: TextStyle(
                                           fontWeight: FontWeight.w900,
                                           fontSize: 24,
@@ -431,7 +431,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           ),
                                         ),
                                         onPressed: () {
-                                          _launchUrl(profileData.profileLink);
+                                          _launchUrl(profileData.websiteLink);
                                         },
                                       ),
                                     ),
