@@ -6,59 +6,121 @@ import 'package:furniture_app/utils/constants.dart';
 class Posts with ChangeNotifier {
   List<Post> posts = [
     Post(
-      id: 0,
-      link: 'https://www.google.com/',
-      title: 'Chairs',
-      body: 'Science is life. Keep learning',
-      imgUrl:
-          'https://image.freepik.com/free-vector/hand-drawn-science-education-background_23-2148499325.jpg',
-      date: DateTime.now(),
-    ),
-    Post(
       id: 1,
       link: 'https://www.google.com/',
-      title: 'Technology',
-      body: 'Technology is a fast growing field.',
+      title: 'Living room',
+      body: 'cheerfulness combined with sophistication is our approach .',
       imgUrl:
-          'https://importanceoftechnology.net/wp-content/uploads/2020/05/Physiofusion-1024x819-2-950x760-1.jpg',
+          'https://images.unsplash.com/photo-1618221381711-42ca8ab6e908?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80',
+      date: DateTime.now(),
+    ),
+   /* Post(
+      id: 1,
+      link: 'https://www.google.com/',
+      title: 'Beds',
+      body: 'We made you after the end of each day a good sleep.',
+      imgUrl:
+          'https://img.edilportale.com/products/REDONDO-Bed-Moroso-448181-rel34ede8b0.jpg?1643719854352',
+      date: DateTime.now(),
+    ),*/
+    
+Post(
+      id: 3,
+      link: 'https://www.google.com/',
+      title: 'dining table ',
+      body: 'A comfortable and quiet dining room that gives you a feeling of happiness  .',
+      imgUrl:
+          'https://th.bing.com/th/id/R.ad5309861f55f26abdac87f473a70eda?rik=9eJHUoh9aVgC2w&riu=http%3a%2f%2fcdn.ecommercedns.uk%2ffiles%2f5%2f227805%2f4%2f4497284%2fwalnut-small-dining-table-for-4.jpg&ehk=xGw40PewLV%2fB1XeOLsAAoYvVACSeQgUj%2bgXpB4M3raQ%3d&risl=&pid=ImgRaw&r=0',
+      date: DateTime.now(),
+    ),
+    /*Post(
+      id: 4,
+      link: 'https://www.google.com/',
+      title: 'Kitchens',
+      body: 'Sophistication with simplicity to make you feel comfortable in your kitchen.',
+      imgUrl:
+          'https://img.edilportale.com/products/round-ornare-549281-relecb4c3c5.jpg?1643719929918',
       date: DateTime.now(),
     ),
     Post(
-      id: 2,
+      id: 5,
       link: 'https://www.google.com/',
-      title: 'Desks',
-      body: 'Technology is a fast growing field.',
+      title: 'Bedroom for kids',
+      body: 'Exploiting spaces with simplicity for your child room',
       imgUrl:
-          'https://importanceoftechnology.net/wp-content/uploads/2020/05/Physiofusion-1024x819-2-950x760-1.jpg',
+          'https://img.edilportale.com/product-thumbs/b_TIRAMOLLA-916-TUMIDEI-204756-relb51486b.jpg',
+      date: DateTime.now(),
+    ),*/
+    
+    Post(
+      id: 6,
+      link: 'https://www.google.com/',
+      title: 'chairs',
+      body: 'Comfortable chair, nice time .',
+      imgUrl:
+          'https://cdn.shopify.com/s/files/1/0399/1126/0318/products/BossatHomeProduct-PalomaLounge6.jpg?v=1594840230',
       date: DateTime.now(),
     ),
   ];
   List<Post> trendings = [
     Post(
-      id: 2,
+      id: 7,
       link: 'https://www.google.com/',
-      title: 'Science',
-      body: 'Science is life. Keep learning',
+      title: 'Classy living room ',
+      body: 'Elegance beats everything ',
       imgUrl:
-          'https://image.freepik.com/free-vector/hand-drawn-science-education-background_23-2148499325.jpg',
+          'https://images.unsplash.com/photo-1618221469555-7f3ad97540d6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80',
       date: DateTime.now(),
     ),
-    Post(
-      id: 3,
+    
+    
+    
+    /*Post(
+      id: 8,
       link: 'https://www.google.com/',
-      title: 'Technology',
-      body: 'Technology is a fast growing field.',
+      title: 'kids room ',
+      body: 'We provide a peaceful sleep for your child. ',
       imgUrl:
-          'https://importanceoftechnology.net/wp-content/uploads/2020/05/Physiofusion-1024x819-2-950x760-1.jpg',
+          'https://img.edilportale.com/product-thumbs/2b_KC306-Bedroom-set-Moretti-Compact-461223-rel96c8eedf.jpg',
+      date: DateTime.now(),
+    
+    Post(
+      id: 9,
+      link: 'https://www.google.com/',
+      title: 'Day Bed ',
+      body: 'Sophistication and simplicity is our approach  ',
+      imgUrl:
+          'https://img.edilportale.com/product-thumbs/2b_day-bed-flexform-554816-reled24d5e.jpg',
       date: DateTime.now(),
     ),
+    */
+
     Post(
-      id: 4,
+      id: 10,
       link: 'https://www.google.com/',
-      title: 'Bedrooms',
-      body: 'Technology is a fast growing field.',
+      title: 'living room ',
+      body: 'Cute living room always win',
       imgUrl:
-          'https://importanceoftechnology.net/wp-content/uploads/2020/05/Physiofusion-1024x819-2-950x760-1.jpg',
+          'https://images.unsplash.com/photo-1617103996702-96ff29b1c467?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80',
+      date: DateTime.now(),
+    ),
+
+   /* Post(
+      id: 17,
+      link: 'https://www.google.com/',
+      title: 'Bedroom ',
+      body: 'The most important thing at the end of the day is a quiet sleep, and this is what our products provide.  ',
+      imgUrl:
+          'https://img.edilportale.com/product-thumbs/b_Hotel-bedroom-Cosy-International-548718-rel645990b0.jpg',
+      date: DateTime.now(),
+    ),*/
+  Post(
+      id: 16,
+      link: 'https://www.google.com/',
+      title: 'Classy chair ',
+      body: 'Elegance beats everything ',
+      imgUrl:
+          'https://cdn.shopify.com/s/files/1/0399/1126/0318/products/BossatHomeProduct-Mr_Mrs3.jpg?v=1593618756',
       date: DateTime.now(),
     ),
   ];
