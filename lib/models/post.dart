@@ -7,6 +7,7 @@ class Post {
   final String title;
   final String body;
   final DateTime date;
+  final double price;
 
   Post({
     @required this.id,
@@ -15,5 +16,6 @@ class Post {
     @required this.body,
     @required this.imgUrl,
     @required this.date,
+    @required this.price,
   });
 }

@@ -44,8 +44,8 @@ class _CartScreenState extends State<CartScreen> {
                           children: [
                             Text(
                               i % 2 == 0
-                                  ? 'Ninja Nike Air 200'
-                                  : 'Ninja Nike Sneakers',
+                                  ? 'Dining Table'
+                                  : 'Classy Living Room',
                               style: TextStyle(
                                 color: mainColor,
                                 fontWeight: FontWeight.bold,
@@ -53,7 +53,7 @@ class _CartScreenState extends State<CartScreen> {
                               ),
                             ),
                             Text(
-                              '\$${i * 45.50}',
+                              '\$${(i+1) * 92.5}',
                               style: TextStyle(
                                 fontSize: 20,
                               ),

@@ -24,19 +24,19 @@ class _IntroScreenState extends State<IntroScreen> {
         pages = [
           introPage(
             title: 'Welcome',
-            body: 'Welcome to our Furniture App Introduction Page',
+            body: 'Furniture home is your home for buying furniture',
             color: Colors.white,
             imgAssetUrl: 'assets/images/intro1.jpeg',
           ),
           introPage(
-            title: 'Welcome',
-            body: 'Welcome to our Furniture App Introduction Page',
+            title: 'Find your designers',
+            body: 'We have the best designers all over the world waiting for you',
             color: Colors.white,
             imgAssetUrl: 'assets/images/intro2.jpeg',
           ),
           introPage(
-            title: 'Welcome',
-            body: 'Welcome to our Furniture App Introduction Page',
+            title: 'Pay with confidence',
+            body: 'Explore our best offers and discounts that are updated daily',
             color: Colors.white,
             imgAssetUrl: 'assets/images/intro3.jpeg',
           ),

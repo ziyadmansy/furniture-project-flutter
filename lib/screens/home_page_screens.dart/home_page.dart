@@ -153,10 +153,17 @@ class _HomePageState extends State<HomePage> {
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(
                                             kBorderRadius),
-                                        child: Image.network(
-                                          postsData.posts[i].imgUrl,
-                                          width: screenWidth,
-                                          fit: BoxFit.fill,
+                                        child: Banner(
+                                          location: BannerLocation.topEnd,
+                                          color: mainColor,
+                                          message: postsData.posts[i].price
+                                              .toInt()
+                                              .toString(),
+                                          child: Image.network(
+                                            postsData.posts[i].imgUrl,
+                                            width: screenWidth,
+                                            fit: BoxFit.fill,
+                                          ),
                                         ),
                                       ),
                                     ),

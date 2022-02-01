@@ -13,8 +13,9 @@ class Posts with ChangeNotifier {
       imgUrl:
           'https://images.unsplash.com/photo-1618221381711-42ca8ab6e908?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80',
       date: DateTime.now(),
+      price: 2500,
     ),
-   /* Post(
+    /* Post(
       id: 1,
       link: 'https://www.google.com/',
       title: 'Beds',
@@ -23,15 +24,17 @@ class Posts with ChangeNotifier {
           'https://img.edilportale.com/products/REDONDO-Bed-Moroso-448181-rel34ede8b0.jpg?1643719854352',
       date: DateTime.now(),
     ),*/
-    
-Post(
+
+    Post(
       id: 3,
       link: 'https://www.google.com/',
-      title: 'dining table ',
-      body: 'A comfortable and quiet dining room that gives you a feeling of happiness  .',
+      title: 'dining table',
+      body:
+          'A comfortable and quiet dining room that gives you a feeling of happiness  .',
       imgUrl:
           'https://th.bing.com/th/id/R.ad5309861f55f26abdac87f473a70eda?rik=9eJHUoh9aVgC2w&riu=http%3a%2f%2fcdn.ecommercedns.uk%2ffiles%2f5%2f227805%2f4%2f4497284%2fwalnut-small-dining-table-for-4.jpg&ehk=xGw40PewLV%2fB1XeOLsAAoYvVACSeQgUj%2bgXpB4M3raQ%3d&risl=&pid=ImgRaw&r=0',
       date: DateTime.now(),
+      price: 1000,
     ),
     /*Post(
       id: 4,
@@ -51,7 +54,7 @@ Post(
           'https://img.edilportale.com/product-thumbs/b_TIRAMOLLA-916-TUMIDEI-204756-relb51486b.jpg',
       date: DateTime.now(),
     ),*/
-    
+
     Post(
       id: 6,
       link: 'https://www.google.com/',
@@ -60,21 +63,21 @@ Post(
       imgUrl:
           'https://cdn.shopify.com/s/files/1/0399/1126/0318/products/BossatHomeProduct-PalomaLounge6.jpg?v=1594840230',
       date: DateTime.now(),
+      price: 1000,
     ),
   ];
   List<Post> trendings = [
     Post(
       id: 7,
       link: 'https://www.google.com/',
-      title: 'Classy living room ',
+      title: 'Classy living room',
       body: 'Elegance beats everything ',
       imgUrl:
           'https://images.unsplash.com/photo-1618221469555-7f3ad97540d6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80',
       date: DateTime.now(),
+      price: 500,
     ),
-    
-    
-    
+
     /*Post(
       id: 8,
       link: 'https://www.google.com/',
@@ -103,9 +106,10 @@ Post(
       imgUrl:
           'https://images.unsplash.com/photo-1617103996702-96ff29b1c467?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80',
       date: DateTime.now(),
+      price: 1000,
     ),
 
-   /* Post(
+    /* Post(
       id: 17,
       link: 'https://www.google.com/',
       title: 'Bedroom ',
@@ -114,7 +118,7 @@ Post(
           'https://img.edilportale.com/product-thumbs/b_Hotel-bedroom-Cosy-International-548718-rel645990b0.jpg',
       date: DateTime.now(),
     ),*/
-  Post(
+    Post(
       id: 16,
       link: 'https://www.google.com/',
       title: 'Classy chair ',
@@ -122,6 +126,7 @@ Post(
       imgUrl:
           'https://cdn.shopify.com/s/files/1/0399/1126/0318/products/BossatHomeProduct-Mr_Mrs3.jpg?v=1593618756',
       date: DateTime.now(),
+      price: 750,
     ),
   ];
   List<Map<String, dynamic>> media = [];
@@ -253,6 +258,7 @@ Post(
           body: post['content']['rendered'] as String,
           imgUrl: imgUrl,
           date: DateTime.tryParse(post['date'] as String),
+          price: post['price'] as double,
         );
       }).toList();
       notifyListeners();
