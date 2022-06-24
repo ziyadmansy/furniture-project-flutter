@@ -1,51 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:furniture_app/providers/posts.dart';
-import 'package:furniture_app/screens/image_screen.dart';
-import 'package:furniture_app/screens/post_description_screen.dart';
 import 'package:furniture_app/utils/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HomePage extends StatefulWidget {
+import '../../widgets/custom_dialogs.dart';
+import '../image_screen.dart';
+import '../post_description_screen.dart';
+
+class ProductsPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _ProductsPageState createState() => _ProductsPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ProductsPageState extends State<ProductsPage> {
+  int _selectedChip = 0;
   bool _isLoading = false;
   bool _hasCrashed = false;
 
   @override
   void initState() {
     super.initState();
-    // getPosts();
+    getProducts();
   }
 
   Future<void> _launchUrl(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      Toast.show(
-        'Couldn\'t Launch',
-        context,
-        backgroundColor: redColor,
-        textColor: Colors.white,
+      errorDialog(
+        context: context,
+        title: 'Error',
+        body: 'Something went wrong!',
       );
     }
   }
 
-  Future<void> getPosts() async {
+  Future<void> getProducts() async {
     try {
       setState(() {
         _isLoading = true;
       });
-      await Provider.of<Posts>(context, listen: false).getPosts();
-      // await Provider.of<Posts>(context, listen: false).createPost(
-      //   title: 'test1',
-      //   body: 'test1',
-      // );
+      await Provider.of<Posts>(context, listen: false).getProducts();
       setState(() {
         _isLoading = false;
         _hasCrashed = false;
@@ -61,7 +59,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final postsData = Provider.of<Posts>(context, listen: false);
+    final postsData = Provider.of<Posts>(context, listen: true);
     return _isLoading
         ? Center(
             child: appLoader,
@@ -86,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                       height: 8.0,
                     ),
                     FlatButton(
-                      onPressed: getPosts,
+                      onPressed: getProducts,
                       child: const Text(
                         'Retry',
                         style: TextStyle(
@@ -100,7 +98,7 @@ class _HomePageState extends State<HomePage> {
             : Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListView.builder(
-                  itemCount: postsData.posts.length,
+                  itemCount: postsData.products.length,
                   itemBuilder: (context, i) {
                     return Card(
                       margin: const EdgeInsets.all(8),
@@ -113,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {
                           Navigator.of(context).pushNamed(
                             PostsDescriptionScreen.ROUTE_NAME,
-                            arguments: postsData.posts[i],
+                            arguments: postsData.products[i],
                           );
                         },
                         child: Padding(
@@ -122,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               ListTile(
                                 title: Text(
-                                  postsData.posts[i].title,
+                                  postsData.products[i].name,
                                   style: TextStyle(
                                     color: mainColor,
                                     fontWeight: FontWeight.bold,
@@ -130,7 +128,8 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                                 subtitle: Text(
-                                    'Posted on ${postsData.posts[i].date.day}/${postsData.posts[i].date.month}/${postsData.posts[i].date.year}'),
+                                  '${postsData.products[i].material}',
+                                ),
                               ),
                               Container(
                                 height: 200,
@@ -142,25 +141,24 @@ class _HomePageState extends State<HomePage> {
                                           .push(MaterialPageRoute(
                                         builder: (context) {
                                           return ImageScreen(
-                                            '${postsData.posts[i].id}',
-                                            postsData.posts[i].imgUrl,
+                                            '${postsData.products[i].id}',
+                                            postsData.products[i].imgUrl,
                                           );
                                         },
                                       ));
                                     },
                                     child: Hero(
-                                      tag: '${postsData.posts[i].id}',
+                                      tag: '${postsData.products[i].id}',
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(
                                             kBorderRadius),
                                         child: Banner(
                                           location: BannerLocation.topEnd,
                                           color: mainColor,
-                                          message: postsData.posts[i].price
-                                              .toInt()
-                                              .toString(),
+                                          message:
+                                              '\$${postsData.products[i].cost.toStringAsFixed(1)}',
                                           child: Image.network(
-                                            postsData.posts[i].imgUrl,
+                                            postsData.products[i].imgUrl,
                                             width: screenWidth,
                                             fit: BoxFit.fill,
                                           ),
@@ -171,38 +169,28 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               Divider(),
-                              IntrinsicHeight(
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextButton.icon(
-                                        onPressed: () {
-                                          _launchUrl(postsData.posts[i].link);
-                                        },
-                                        label: Text('Visit'),
-                                        icon: Icon(Icons.link),
-                                      ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextButton.icon(
+                                      onPressed: () {
+                                        // _launchUrl(postsData.products[i].link);
+                                      },
+                                      label: Text('Vist'),
+                                      icon: Icon(Icons.link),
                                     ),
-                                    const VerticalDivider(),
-                                    Expanded(
-                                      child: TextButton.icon(
-                                        onPressed: () {},
-                                        label: Text('Buy'),
-                                        icon: Icon(Icons.shopping_bag),
-                                      ),
+                                  ),
+                                  VerticalDivider(),
+                                  Expanded(
+                                    child: TextButton.icon(
+                                      onPressed: () async {
+                                        await _launchUrl('tel:01023843232');
+                                      },
+                                      label: Text('Contact'),
+                                      icon: FaIcon(FontAwesomeIcons.phone),
                                     ),
-                                    const VerticalDivider(),
-                                    Expanded(
-                                      child: TextButton.icon(
-                                        onPressed: () async {
-                                          await _launchUrl('tel:01023843232');
-                                        },
-                                        label: Text('Contact'),
-                                        icon: FaIcon(FontAwesomeIcons.phone),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),

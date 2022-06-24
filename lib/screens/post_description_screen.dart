@@ -4,6 +4,9 @@ import 'package:furniture_app/utils/constants.dart';
 import 'package:toast/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../models/product.dart';
+import '../widgets/custom_dialogs.dart';
+
 class PostsDescriptionScreen extends StatefulWidget {
   static const String ROUTE_NAME = '/postDescriptionScreen';
   @override
@@ -15,11 +18,10 @@ class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      Toast.show(
-        'Couldn\'t Launch',
-        context,
-        backgroundColor: redColor,
-        textColor: Colors.white,
+      errorDialog(
+        context: context,
+        title: 'Error',
+        body: 'Something went wrong!',
       );
     }
   }
@@ -27,10 +29,10 @@ class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final postData = ModalRoute.of(context).settings.arguments as Post;
+    final prod = ModalRoute.of(context).settings.arguments as Product;
     return Scaffold(
       appBar: AppBar(
-        title: Text(postData.title),
+        title: Text(prod.name),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -40,13 +42,13 @@ class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.network(
-                  postData.imgUrl,
+                  prod.imgUrl,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  postData.title,
+                  prod.name,
                   style: TextStyle(
                     color: mainColor,
                     fontWeight: FontWeight.bold,
@@ -55,33 +57,13 @@ class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
                 ),
               ),
               Text(
-                postData.body,
+                prod.details,
                 style: TextStyle(
                   fontSize: 20,
                 ),
               ),
               SizedBox(
                 height: 32,
-              ),
-              SizedBox(
-                height: 48,
-                width: screenWidth,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    _launchUrl(postData.link);
-                  },
-                  icon: Icon(Icons.link),
-                  label: Text('Visit'),
-                  style: ElevatedButton.styleFrom(
-                    primary: mainColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(kBorderRadius),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 8,
               ),
               SizedBox(
                 height: 48,

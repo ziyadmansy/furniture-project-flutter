@@ -1,49 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:furniture_app/providers/posts.dart';
+import 'package:furniture_app/screens/image_screen.dart';
+import 'package:furniture_app/screens/post_description_screen.dart';
 import 'package:furniture_app/utils/constants.dart';
+import 'package:furniture_app/widgets/custom_dialogs.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../image_screen.dart';
-import '../post_description_screen.dart';
-
-class TrendingPage extends StatefulWidget {
+class PostsPage extends StatefulWidget {
   @override
-  _TrendingPageState createState() => _TrendingPageState();
+  _PostsPageState createState() => _PostsPageState();
 }
 
-class _TrendingPageState extends State<TrendingPage> {
-  int _selectedChip = 0;
+class _PostsPageState extends State<PostsPage> {
   bool _isLoading = false;
   bool _hasCrashed = false;
 
   @override
   void initState() {
     super.initState();
-    // getTrendings();
+    getPosts();
   }
 
   Future<void> _launchUrl(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      Toast.show(
-        'Couldn\'t Launch',
-        context,
-        backgroundColor: redColor,
-        textColor: Colors.white,
+      errorDialog(
+        context: context,
+        title: 'Error',
+        body: 'Something went wrong!',
       );
     }
   }
 
-  Future<void> getTrendings() async {
+  Future<void> getPosts() async {
     try {
       setState(() {
         _isLoading = true;
       });
-      await Provider.of<Posts>(context, listen: false).getTrendings();
+      await Provider.of<Posts>(context, listen: false).getPosts();
       setState(() {
         _isLoading = false;
         _hasCrashed = false;
@@ -59,7 +57,7 @@ class _TrendingPageState extends State<TrendingPage> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final postsData = Provider.of<Posts>(context, listen: true);
+    final postsData = Provider.of<Posts>(context, listen: false);
     return _isLoading
         ? Center(
             child: appLoader,
@@ -84,7 +82,7 @@ class _TrendingPageState extends State<TrendingPage> {
                       height: 8.0,
                     ),
                     FlatButton(
-                      onPressed: getTrendings,
+                      onPressed: getPosts,
                       child: const Text(
                         'Retry',
                         style: TextStyle(
@@ -98,7 +96,7 @@ class _TrendingPageState extends State<TrendingPage> {
             : Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListView.builder(
-                  itemCount: postsData.trendings.length,
+                  itemCount: postsData.posts.length,
                   itemBuilder: (context, i) {
                     return Card(
                       margin: const EdgeInsets.all(8),
@@ -111,7 +109,7 @@ class _TrendingPageState extends State<TrendingPage> {
                         onTap: () {
                           Navigator.of(context).pushNamed(
                             PostsDescriptionScreen.ROUTE_NAME,
-                            arguments: postsData.trendings[i],
+                            arguments: postsData.posts[i],
                           );
                         },
                         child: Padding(
@@ -120,7 +118,7 @@ class _TrendingPageState extends State<TrendingPage> {
                             children: [
                               ListTile(
                                 title: Text(
-                                  postsData.trendings[i].title,
+                                  postsData.posts[i].postTitle,
                                   style: TextStyle(
                                     color: mainColor,
                                     fontWeight: FontWeight.bold,
@@ -128,10 +126,7 @@ class _TrendingPageState extends State<TrendingPage> {
                                   ),
                                 ),
                                 subtitle: Text(
-                                  'Posted on ${postsData.trendings[i].date.day}/${postsData.trendings[i].date.month}/${postsData.trendings[i].date.year}' +
-                                      '\nTrending #${i + 1} on Modern Furniture Home!',
-                                ),
-                                isThreeLine: true,
+                                    'Posted on ${postsData.posts[i].publishedDate}'),
                               ),
                               Container(
                                 height: 200,
@@ -143,19 +138,19 @@ class _TrendingPageState extends State<TrendingPage> {
                                           .push(MaterialPageRoute(
                                         builder: (context) {
                                           return ImageScreen(
-                                            '${postsData.trendings[i].id}',
-                                            postsData.trendings[i].imgUrl,
+                                            '${postsData.posts[i].postId}',
+                                            postsData.posts[i].imgUrl,
                                           );
                                         },
                                       ));
                                     },
                                     child: Hero(
-                                      tag: '${postsData.trendings[i].id}',
+                                      tag: '${postsData.posts[i].postId}',
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(
                                             kBorderRadius),
                                         child: Image.network(
-                                          postsData.trendings[i].imgUrl,
+                                          postsData.posts[i].imgUrl,
                                           width: screenWidth,
                                           fit: BoxFit.fill,
                                         ),
@@ -165,28 +160,38 @@ class _TrendingPageState extends State<TrendingPage> {
                                 ),
                               ),
                               Divider(),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: TextButton.icon(
-                                      onPressed: () {
-                                        _launchUrl(postsData.trendings[i].link);
-                                      },
-                                      label: Text('Vist'),
-                                      icon: Icon(Icons.link),
+                              IntrinsicHeight(
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: TextButton.icon(
+                                        onPressed: () {
+                                          // _launchUrl(postsData.posts[i].link);
+                                        },
+                                        label: Text('Visit'),
+                                        icon: Icon(Icons.link),
+                                      ),
                                     ),
-                                  ),
-                                  VerticalDivider(),
-                                  Expanded(
-                                    child: TextButton.icon(
-                                      onPressed: () async {
-                                        await _launchUrl('tel:01023843232');
-                                      },
-                                      label: Text('Contact'),
-                                      icon: FaIcon(FontAwesomeIcons.phone),
+                                    const VerticalDivider(),
+                                    Expanded(
+                                      child: TextButton.icon(
+                                        onPressed: () {},
+                                        label: Text('Buy'),
+                                        icon: Icon(Icons.shopping_bag),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    const VerticalDivider(),
+                                    Expanded(
+                                      child: TextButton.icon(
+                                        onPressed: () async {
+                                          await _launchUrl('tel:01023843232');
+                                        },
+                                        label: Text('Contact'),
+                                        icon: FaIcon(FontAwesomeIcons.phone),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),

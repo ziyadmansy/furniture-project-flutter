@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:furniture_app/providers/auth.dart';
 import 'package:furniture_app/utils/constants.dart';
+import 'package:furniture_app/widgets/custom_dialogs.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -29,11 +30,10 @@ class _ProfilePageState extends State<ProfilePage> {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      Toast.show(
-        'Couldn\'t Launch',
-        context,
-        backgroundColor: redColor,
-        textColor: Colors.white,
+      errorDialog(
+        context: context,
+        title: 'Error',
+        body: 'Something went wrong!',
       );
     }
   }

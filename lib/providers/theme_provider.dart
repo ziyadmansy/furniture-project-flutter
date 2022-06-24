@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 class ThemeProvider with ChangeNotifier {
 
-  bool isDarkMode = false;
+  bool isDarkMode = true;
 
   void toggleDarkMode(bool selectedMode) {
     isDarkMode = selectedMode;

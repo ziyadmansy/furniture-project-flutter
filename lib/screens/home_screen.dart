@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_app/screens/cart_screen.dart';
-import 'package:furniture_app/screens/home_page_screens.dart/home_page.dart';
+import 'package:furniture_app/screens/home_page_screens.dart/posts_page.dart';
 import 'package:furniture_app/screens/home_page_screens.dart/profile_page.dart';
 import 'package:furniture_app/screens/home_page_screens.dart/settings_page.dart';
-import 'package:furniture_app/screens/home_page_screens.dart/trending_page.dart';
+import 'package:furniture_app/screens/home_page_screens.dart/products_page.dart';
 import 'package:furniture_app/utils/constants.dart';
 import 'package:furniture_app/widgets/nav_drawer.dart';
 
@@ -22,12 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _bodyPages = [
       {
-        'title': 'Home',
-        'body': HomePage(),
+        'title': 'Posts',
+        'body': PostsPage(),
       },
       {
-        'title': 'Trending',
-        'body': TrendingPage(),
+        'title': 'Products',
+        'body': ProductsPage(),
       },
       {
         'title': 'Profile',
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.feed),
                 color: _currentIndex == 0 ? mainColor : Colors.grey,
                 onPressed: () {
                   setState(() {
@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               IconButton(
-                icon: Icon(Icons.trending_up),
+                icon: Icon(Icons.shopify),
                 color: _currentIndex == 1 ? mainColor : Colors.grey,
                 onPressed: () {
                   setState(() {
