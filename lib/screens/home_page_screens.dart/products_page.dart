@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:furniture_app/providers/posts.dart';
+import 'package:furniture_app/screens/product_description_screen.dart';
 import 'package:furniture_app/utils/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
@@ -110,7 +111,7 @@ class _ProductsPageState extends State<ProductsPage> {
                         borderRadius: BorderRadius.circular(kBorderRadius),
                         onTap: () {
                           Navigator.of(context).pushNamed(
-                            PostsDescriptionScreen.ROUTE_NAME,
+                            ProductDescriptionScreen.ROUTE_NAME,
                             arguments: postsData.products[i],
                           );
                         },

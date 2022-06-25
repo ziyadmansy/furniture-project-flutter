@@ -7,13 +7,13 @@ import 'package:url_launcher/url_launcher.dart';
 import '../models/product.dart';
 import '../widgets/custom_dialogs.dart';
 
-class PostsDescriptionScreen extends StatefulWidget {
-  static const String ROUTE_NAME = '/postDescriptionScreen';
+class ProductDescriptionScreen extends StatefulWidget {
+  static const String ROUTE_NAME = '/productDescriptionScreen';
   @override
-  _PostsDescriptionScreenState createState() => _PostsDescriptionScreenState();
+  _ProductDescriptionScreenState createState() => _ProductDescriptionScreenState();
 }
 
-class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
+class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
   Future<void> _launchUrl(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -29,10 +29,10 @@ class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final post = ModalRoute.of(context).settings.arguments as Post;
+    final prod = ModalRoute.of(context).settings.arguments as Product;
     return Scaffold(
       appBar: AppBar(
-        title: Text(post.postTitle),
+        title: Text(prod.name),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -42,13 +42,13 @@ class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.network(
-                  post.imgUrl,
+                  prod.imgUrl,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  post.postTitle,
+                  prod.name,
                   style: TextStyle(
                     color: mainColor,
                     fontWeight: FontWeight.bold,
@@ -57,7 +57,7 @@ class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
                 ),
               ),
               Text(
-                post.postBody,
+                prod.details,
                 style: TextStyle(
                   fontSize: 20,
                 ),

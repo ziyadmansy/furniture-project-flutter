@@ -9,6 +9,8 @@ import 'package:furniture_app/screens/intro_screen.dart';
 import 'package:furniture_app/screens/post_description_screen.dart';
 import 'package:furniture_app/screens/splash_screen.dart';
 
+import '../screens/product_description_screen.dart';
+
 Map<String, Widget Function(BuildContext context)> appRoutes() {
   return {
     SplashScreen.ROUTE_NAME: (context) => SplashScreen(),
@@ -19,5 +21,6 @@ Map<String, Widget Function(BuildContext context)> appRoutes() {
     HomeScreen.ROUTE_NAME: (context) => HomeScreen(),
     CartScreen.ROUTE_NAME: (context) => CartScreen(),
     PostsDescriptionScreen.ROUTE_NAME: (context) => PostsDescriptionScreen(),
+    ProductDescriptionScreen.ROUTE_NAME: (context) => ProductDescriptionScreen(),
   };
 }
