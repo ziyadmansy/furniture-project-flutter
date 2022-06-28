@@ -10,7 +10,8 @@ import '../widgets/custom_dialogs.dart';
 class ProductDescriptionScreen extends StatefulWidget {
   static const String ROUTE_NAME = '/productDescriptionScreen';
   @override
-  _ProductDescriptionScreenState createState() => _ProductDescriptionScreenState();
+  _ProductDescriptionScreenState createState() =>
+      _ProductDescriptionScreenState();
 }
 
 class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
@@ -69,7 +70,9 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
                 height: 48,
                 width: screenWidth,
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                   icon: Icon(Icons.shopping_bag),
                   label: Text('Add to Cart'),
                   style: ElevatedButton.styleFrom(

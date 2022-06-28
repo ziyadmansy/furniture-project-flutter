@@ -1,20 +1,103 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:furniture_app/enums/gender.dart';
 import 'package:furniture_app/utils/constants.dart';
+import 'package:toast/toast.dart';
+
+import '../utils/api_routes.dart';
 
 class Auth with ChangeNotifier {
   int id;
-  String profileName = 'Ziyad Mansy';
-  String websiteLink = 'https://www.google.com/';
-  String profileImg = 'https://scontent.fcai20-2.fna.fbcdn.net/v/t1.6435-9/142655105_3708214665924749_7179964958772877739_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=oCMBOXjJse8AX-Pd9sy&_nc_ht=scontent.fcai20-2.fna&oh=00_AT-M_eK9mjhiZLLg0CFeLADXsFS5Om61BCVMHR2bLXVFmg&oe=6217B3AB';
+  String profileName = '';
+  String profileCity = '';
 
-  Future<void> getProfile(int id) async {
+  Future<void> register({
+    @required String firstName,
+    @required String lastName,
+    @required Gender gender,
+    @required String age,
+    @required String email,
+    @required String password,
+    @required bool isCustomer,
+  }) async {
     try {
-      final String url = '$API_URL/users/$id';
+      // Customer value=0
+      // Designer value=2
+
+      final model = {
+        'firstname': firstName,
+        'lastname': lastName,
+        'birthday': '26/9/1999',
+        'city': 'cairo',
+        'region': 'cairo',
+        'street': 'cairo',
+        'phone': '1119586564',
+        'role_as': isCustomer ? 0 : 2,
+        'gender': gender.name,
+        'age': age,
+        'email': email,
+        'password': password,
+        'password_confirmation': password,
+      };
+
+      print(model);
 
       Response response;
       var dio = Dio();
-      response = await dio.get(url);
+      response = await dio.post(
+        ApiRoutes.register,
+        data: model,
+      );
+
+      final decodedResponseBody = response.data;
+      print(decodedResponseBody);
+
+      if (response.statusCode >= 400) {
+        throw Exception('Status Code >= 400 register');
+      }
+
+      notifyListeners();
+    } on DioError catch (e) {
+      print(e.response.statusCode);
+      print(e.response.data);
+      rethrow;
+    }
+  }
+
+  Future<void> login(String email, String password) async {
+    try {
+      Response response;
+      var dio = Dio();
+      response = await dio.post(
+        ApiRoutes.login,
+        data: {
+          'email': email,
+          'password': password,
+        },
+      );
+
+      final decodedResponseBody = response.data;
+      print(decodedResponseBody);
+
+      if (response.statusCode >= 400) {
+        throw Exception('Status Code >= 400 register');
+      }
+
+      id = decodedResponseBody['user']['id'] as int;
+      profileName = decodedResponseBody['user']['firstname'].toString() + decodedResponseBody['user']['lastname'].toString();
+      profileCity = decodedResponseBody['user']['city'].toString();
+
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> getProfile(int id) async {
+    try {
+      Response response;
+      var dio = Dio();
+      response = await dio.get(ApiRoutes.portfolio(id));
 
       final Map<String, dynamic> decodedResponseBody =
           response.data as Map<String, dynamic>;
@@ -22,9 +105,9 @@ class Auth with ChangeNotifier {
       if (response.statusCode >= 400) {
         throw Exception('Status Code >= 400 getProfile');
       }
-      profileName = decodedResponseBody['name'] as String;
-      websiteLink = decodedResponseBody['link'] as String;
-      profileImg = decodedResponseBody['avatar_urls']['96'] as String;
+      // profileName = decodedResponseBody['name'] as String;
+      // websiteLink = decodedResponseBody['link'] as String;
+      // profileImg = decodedResponseBody['avatar_urls']['96'] as String;
 
       notifyListeners();
     } catch (error) {

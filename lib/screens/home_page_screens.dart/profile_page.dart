@@ -43,7 +43,8 @@ class _ProfilePageState extends State<ProfilePage> {
       setState(() {
         _isLoading = true;
       });
-      await Provider.of<Auth>(context, listen: false).getProfile(1);
+      final authData = Provider.of<Auth>(context, listen: false);
+      // await Provider.of<Auth>(context, listen: false).getProfile(authData.id);
       setState(() {
         _isLoading = false;
         _hasCrashed = false;
@@ -74,8 +75,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final authData = Provider.of<Auth>(context);
     final screenWidth = MediaQuery.of(context).size.width;
-    final profileData = Provider.of<Auth>(context, listen: true);
+    // final profileData = Provider.of<Auth>(context, listen: true);
 
     return _isLoading
         ? Center(
@@ -121,24 +123,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Center(
                     child: Column(
                       children: [
-                        CircleAvatar(
-                          backgroundColor: mainColor,
-                          radius: screenWidth / 6,
-                          backgroundImage: NetworkImage(profileData.profileImg),
-                        ),
                         SizedBox(
-                          height: 16,
-                        ),
-                        Text(
-                          profileData.profileName.toUpperCase(),
-                          style: TextStyle(fontSize: 28.0),
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Divider(),
-                        SizedBox(
-                          height: 16,
+                          height: 32,
                         ),
                         Container(
                           width: screenWidth,
@@ -166,148 +152,148 @@ class _ProfilePageState extends State<ProfilePage> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(16.0),
                                       child: Text(
-                                        profileData.profileName,
+                                        authData.profileName,
                                         style: TextStyle(
                                           fontSize: 20,
                                         ),
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    height: 40,
-                                    child: ElevatedButton.icon(
-                                      icon: Icon(
-                                        Icons.edit,
-                                      ),
-                                      label: Text('Edit'),
-                                      style: ElevatedButton.styleFrom(
-                                        primary: mainColor,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        showModalBottomSheet(
-                                          context: context,
-                                          isScrollControlled: true,
-                                          builder: (context) {
-                                            return Container(
-                                              child: Form(
-                                                key: _nameFormKey,
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      16.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Text(
-                                                          'Edit your Name',
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 24,
-                                                            color: mainColor,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 16,
-                                                      ),
-                                                      TextFormField(
-                                                        decoration:
-                                                            InputDecoration(
-                                                          hintText: 'Name',
-                                                          labelText: 'Name',
-                                                          enabledBorder:
-                                                              OutlineInputBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8),
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: Colors
-                                                                        .grey,
-                                                                    width: 1,
-                                                                  )),
-                                                          focusedBorder:
-                                                              OutlineInputBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8),
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: mainColor,
-                                                              width: 2,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        validator: (text) {
-                                                          if (text.isEmpty) {
-                                                            return 'Please enter a name';
-                                                          } else {
-                                                            return null;
-                                                          }
-                                                        },
-                                                        onSaved: (text) {
-                                                          setState(() {
-                                                            name = text;
-                                                          });
-                                                        },
-                                                      ),
-                                                      SizedBox(
-                                                        height: 32,
-                                                      ),
-                                                      Container(
-                                                        height: 48,
-                                                        width: screenWidth,
-                                                        child:
-                                                            ElevatedButton.icon(
-                                                          icon: Icon(
-                                                            Icons.save,
-                                                          ),
-                                                          label: Text('Save'),
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                            primary: mainColor,
-                                                            shape:
-                                                                RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8),
-                                                            ),
-                                                          ),
-                                                          onPressed: () {
-                                                            if (_nameFormKey
-                                                                .currentState
-                                                                .validate()) {
-                                                              _nameFormKey
-                                                                  .currentState
-                                                                  .save();
-                                                              Navigator.pop(
-                                                                  context);
-                                                            }
-                                                          },
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  ),
+                                  // Container(
+                                  //   height: 40,
+                                  //   child: ElevatedButton.icon(
+                                  //     icon: Icon(
+                                  //       Icons.edit,
+                                  //     ),
+                                  //     label: Text('Edit'),
+                                  //     style: ElevatedButton.styleFrom(
+                                  //       primary: mainColor,
+                                  //       shape: RoundedRectangleBorder(
+                                  //         borderRadius:
+                                  //             BorderRadius.circular(8),
+                                  //       ),
+                                  //     ),
+                                  //     onPressed: () {
+                                  //       showModalBottomSheet(
+                                  //         context: context,
+                                  //         isScrollControlled: true,
+                                  //         builder: (context) {
+                                  //           return Container(
+                                  //             child: Form(
+                                  //               key: _nameFormKey,
+                                  //               child: Padding(
+                                  //                 padding: const EdgeInsets.all(
+                                  //                     16.0),
+                                  //                 child: Column(
+                                  //                   mainAxisSize:
+                                  //                       MainAxisSize.min,
+                                  //                   children: [
+                                  //                     Padding(
+                                  //                       padding:
+                                  //                           const EdgeInsets
+                                  //                               .all(8.0),
+                                  //                       child: Text(
+                                  //                         'Edit your Name',
+                                  //                         style: TextStyle(
+                                  //                           fontWeight:
+                                  //                               FontWeight.bold,
+                                  //                           fontSize: 24,
+                                  //                           color: mainColor,
+                                  //                         ),
+                                  //                       ),
+                                  //                     ),
+                                  //                     SizedBox(
+                                  //                       height: 16,
+                                  //                     ),
+                                  //                     TextFormField(
+                                  //                       decoration:
+                                  //                           InputDecoration(
+                                  //                         hintText: 'Name',
+                                  //                         labelText: 'Name',
+                                  //                         enabledBorder:
+                                  //                             OutlineInputBorder(
+                                  //                                 borderRadius:
+                                  //                                     BorderRadius
+                                  //                                         .circular(
+                                  //                                             8),
+                                  //                                 borderSide:
+                                  //                                     BorderSide(
+                                  //                                   color: Colors
+                                  //                                       .grey,
+                                  //                                   width: 1,
+                                  //                                 )),
+                                  //                         focusedBorder:
+                                  //                             OutlineInputBorder(
+                                  //                           borderRadius:
+                                  //                               BorderRadius
+                                  //                                   .circular(
+                                  //                                       8),
+                                  //                           borderSide:
+                                  //                               BorderSide(
+                                  //                             color: mainColor,
+                                  //                             width: 2,
+                                  //                           ),
+                                  //                         ),
+                                  //                       ),
+                                  //                       validator: (text) {
+                                  //                         if (text.isEmpty) {
+                                  //                           return 'Please enter a name';
+                                  //                         } else {
+                                  //                           return null;
+                                  //                         }
+                                  //                       },
+                                  //                       onSaved: (text) {
+                                  //                         setState(() {
+                                  //                           name = text;
+                                  //                         });
+                                  //                       },
+                                  //                     ),
+                                  //                     SizedBox(
+                                  //                       height: 32,
+                                  //                     ),
+                                  //                     Container(
+                                  //                       height: 48,
+                                  //                       width: screenWidth,
+                                  //                       child:
+                                  //                           ElevatedButton.icon(
+                                  //                         icon: Icon(
+                                  //                           Icons.save,
+                                  //                         ),
+                                  //                         label: Text('Save'),
+                                  //                         style: ElevatedButton
+                                  //                             .styleFrom(
+                                  //                           primary: mainColor,
+                                  //                           shape:
+                                  //                               RoundedRectangleBorder(
+                                  //                             borderRadius:
+                                  //                                 BorderRadius
+                                  //                                     .circular(
+                                  //                                         8),
+                                  //                           ),
+                                  //                         ),
+                                  //                         onPressed: () {
+                                  //                           if (_nameFormKey
+                                  //                               .currentState
+                                  //                               .validate()) {
+                                  //                             _nameFormKey
+                                  //                                 .currentState
+                                  //                                 .save();
+                                  //                             Navigator.pop(
+                                  //                                 context);
+                                  //                           }
+                                  //                         },
+                                  //                       ),
+                                  //                     )
+                                  //                   ],
+                                  //                 ),
+                                  //               ),
+                                  //             ),
+                                  //           );
+                                  //         },
+                                  //       );
+                                  //     },
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -330,7 +316,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 children: [
                                   Center(
                                     child: Text(
-                                      'Birthdate'.toUpperCase(),
+                                      'City'.toUpperCase(),
                                       style: TextStyle(
                                         fontWeight: FontWeight.w900,
                                         fontSize: 24,
@@ -342,105 +328,105 @@ class _ProfilePageState extends State<ProfilePage> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(16.0),
                                       child: Text(
-                                        '${pickedDate.day} / ${pickedDate.month} / ${pickedDate.year}',
+                                        '${authData.profileCity}',
                                         style: TextStyle(
                                           fontSize: 20,
                                         ),
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    height: 40,
-                                    child: ElevatedButton.icon(
-                                      icon: Icon(
-                                        Icons.edit,
-                                      ),
-                                      label: Text('Edit'),
-                                      style: ElevatedButton.styleFrom(
-                                        primary: mainColor,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        pickDate();
-                                      },
-                                    ),
-                                  ),
+                                  // Container(
+                                  //   height: 40,
+                                  //   child: ElevatedButton.icon(
+                                  //     icon: Icon(
+                                  //       Icons.edit,
+                                  //     ),
+                                  //     label: Text('Edit'),
+                                  //     style: ElevatedButton.styleFrom(
+                                  //       primary: mainColor,
+                                  //       shape: RoundedRectangleBorder(
+                                  //         borderRadius:
+                                  //             BorderRadius.circular(8),
+                                  //       ),
+                                  //     ),
+                                  //     onPressed: () {
+                                  //       pickDate();
+                                  //     },
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
                           ),
                         ),
-                        Container(
-                          width: screenWidth,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(kBorderRadius),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Center(
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Center(
-                                      child: Text(
-                                        'Website'.toUpperCase(),
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 24,
-                                          color: mainColor,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 16,
-                                    ),
-                                    TextField(
-                                      decoration: InputDecoration(
-                                        hintText: 'Website',
-                                        labelText: 'Website',
-                                        enabledBorder: kEnabledBorder,
-                                        focusedBorder: kFocusedBorder,
-                                        icon: Icon(
-                                          Icons.web,
-                                          size: 24,
-                                          color: Colors.blue,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Container(
-                                      height: 40,
-                                      child: ElevatedButton.icon(
-                                        icon: Icon(
-                                          Icons.edit,
-                                        ),
-                                        label: Text('Visit'),
-                                        style: ElevatedButton.styleFrom(
-                                          primary: mainColor,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                        ),
-                                        onPressed: () {
-                                          _launchUrl(profileData.websiteLink);
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        // Container(
+                        //   width: screenWidth,
+                        //   child: Card(
+                        //     shape: RoundedRectangleBorder(
+                        //       borderRadius:
+                        //           BorderRadius.circular(kBorderRadius),
+                        //     ),
+                        //     child: Padding(
+                        //       padding: const EdgeInsets.all(16.0),
+                        //       child: Center(
+                        //         child: Column(
+                        //           crossAxisAlignment:
+                        //               CrossAxisAlignment.stretch,
+                        //           children: [
+                        //             Center(
+                        //               child: Text(
+                        //                 'Website'.toUpperCase(),
+                        //                 style: TextStyle(
+                        //                   fontWeight: FontWeight.w900,
+                        //                   fontSize: 24,
+                        //                   color: mainColor,
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //             SizedBox(
+                        //               height: 16,
+                        //             ),
+                        //             TextField(
+                        //               decoration: InputDecoration(
+                        //                 hintText: 'Website',
+                        //                 labelText: 'Website',
+                        //                 enabledBorder: kEnabledBorder,
+                        //                 focusedBorder: kFocusedBorder,
+                        //                 icon: Icon(
+                        //                   Icons.web,
+                        //                   size: 24,
+                        //                   color: Colors.blue,
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //             SizedBox(
+                        //               height: 8,
+                        //             ),
+                        //             Container(
+                        //               height: 40,
+                        //               child: ElevatedButton.icon(
+                        //                 icon: Icon(
+                        //                   Icons.edit,
+                        //                 ),
+                        //                 label: Text('Visit'),
+                        //                 style: ElevatedButton.styleFrom(
+                        //                   primary: mainColor,
+                        //                   shape: RoundedRectangleBorder(
+                        //                     borderRadius:
+                        //                         BorderRadius.circular(8),
+                        //                   ),
+                        //                 ),
+                        //                 onPressed: () {
+                        //                   _launchUrl(profileData.websiteLink);
+                        //                 },
+                        //               ),
+                        //             ),
+                        //           ],
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         SizedBox(
                           height: 72,
                         ),

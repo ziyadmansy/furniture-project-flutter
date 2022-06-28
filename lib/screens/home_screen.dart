@@ -98,22 +98,22 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      floatingActionButton: Container(
-        width: 60,
-        height: 60,
-        child: FloatingActionButton(
-          child: Icon(
-            Icons.shopping_cart_rounded,
-            color: Colors.teal[50],
-            size: 32,
-          ),
-          backgroundColor: mainColor,
-          onPressed: () {
-            Navigator.of(context).pushNamed(CartScreen.ROUTE_NAME);
-          },
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: Container(
+      //   width: 60,
+      //   height: 60,
+      //   child: FloatingActionButton(
+      //     child: Icon(
+      //       Icons.shopping_cart_rounded,
+      //       color: Colors.teal[50],
+      //       size: 32,
+      //     ),
+      //     backgroundColor: mainColor,
+      //     onPressed: () {
+      //       Navigator.of(context).pushNamed(CartScreen.ROUTE_NAME);
+      //     },
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

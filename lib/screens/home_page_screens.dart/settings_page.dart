@@ -4,6 +4,9 @@ import 'package:furniture_app/providers/theme_provider.dart';
 import 'package:furniture_app/screens/auth_screens.dart/auth_choice_screen.dart';
 import 'package:furniture_app/utils/constants.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../../widgets/custom_dialogs.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -11,6 +14,18 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  Future<void> _launchUrl(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      errorDialog(
+        context: context,
+        title: 'Error',
+        body: 'Something went wrong!',
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeData = Provider.of<ThemeProvider>(context);
@@ -75,7 +90,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                       Divider(),
                       Text(
-                        'Mostafa',
+                        'Mostafa Maher',
                         style: TextStyle(
                           fontSize: 20.0,
                         ),
@@ -89,7 +104,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                       Divider(),
                       Text(
-                        'Aya Mohammad',
+                        'Aya Abd El-Aziz',
                         style: TextStyle(
                           fontSize: 20.0,
                         ),
@@ -150,8 +165,11 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         Divider(),
         ListTile(
-          title: Text('Project Proposal'),
-          onTap: () {},
+          title: Text('Virtual Reality App'),
+          onTap: () async {
+            await _launchUrl(
+                'https://play.google.com/store/apps/details?id=com.modern_academy.arfurniture_app');
+          },
         ),
         Divider(),
         ListTile(

@@ -25,7 +25,7 @@ class Post {
       publishedDate: json['published_date'] as String,
       designerId: json['designer_id'] as int,
       imgUrl: (json['img_url'] as String) ??
-          'https://paulvanderlaken.files.wordpress.com/2020/02/post-box-11.jpg',
+          'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/amazon-rivet-furniture-1533048038.jpg?crop=1.00xw:0.502xh;0,0.423xh&resize=1200:*',
     );
   }
 }

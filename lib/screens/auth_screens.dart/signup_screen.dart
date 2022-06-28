@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_app/enums/gender.dart';
+import 'package:furniture_app/providers/auth.dart';
 import 'package:furniture_app/screens/auth_screens.dart/signin_screen.dart';
 import 'package:furniture_app/utils/constants.dart';
+import 'package:provider/provider.dart';
 
 import '../home_screen.dart';
 
@@ -13,7 +15,37 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   List<bool> _userTypes = [false, false];
-  Gender _gender = Gender.Male;
+  Gender _gender = Gender.male;
+
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  Future<void> register() async {
+    try {
+      final authData = Provider.of<Auth>(context, listen: false);
+      await authData.register(
+        firstName: firstNameController.text,
+        lastName: lastNameController.text,
+        gender: _gender,
+        age: ageController.text,
+        email: emailController.text,
+        password: passwordController.text,
+        isCustomer: _userTypes[0],
+      );
+
+      Navigator.of(context).pushReplacementNamed(HomeScreen.ROUTE_NAME);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error Ocurred'),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -83,6 +115,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         Expanded(
                           child: TextFormField(
+                            controller: firstNameController,
                             decoration: InputDecoration(
                               hintText: 'First Name',
                               labelText: 'First Name',
@@ -96,6 +129,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         Expanded(
                           child: TextFormField(
+                            controller: lastNameController,
                             decoration: InputDecoration(
                               hintText: 'Last Name',
                               labelText: 'Last Name',
@@ -110,6 +144,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 8,
                     ),
                     TextFormField(
+                      controller: ageController,
+                      decoration: InputDecoration(
+                        hintText: 'Age',
+                        labelText: 'Age',
+                        enabledBorder: kEnabledBorder,
+                        focusedBorder: kFocusedBorder,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    TextFormField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         hintText: 'Email',
                         labelText: 'Email',
@@ -121,6 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 8,
                     ),
                     TextFormField(
+                      controller: passwordController,
                       decoration: InputDecoration(
                         hintText: 'Password',
                         labelText: 'Password',
@@ -143,7 +191,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 8,
                     ),
                     RadioListTile(
-                      value: Gender.Male,
+                      value: Gender.male,
                       groupValue: _gender,
                       title: Text('Male'),
                       contentPadding: const EdgeInsets.all(0),
@@ -154,7 +202,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                     ),
                     RadioListTile(
-                      value: Gender.Female,
+                      value: Gender.female,
                       groupValue: _gender,
                       title: Text('Female'),
                       contentPadding: const EdgeInsets.all(0),
@@ -171,10 +219,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 48,
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context)
-                              .pushReplacementNamed(HomeScreen.ROUTE_NAME);
-                        },
+                        onPressed: register,
                         child: Text('Register'),
                         style: ElevatedButton.styleFrom(
                           primary: mainColor,

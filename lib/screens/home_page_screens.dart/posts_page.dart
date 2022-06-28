@@ -163,23 +163,24 @@ class _PostsPageState extends State<PostsPage> {
                               IntrinsicHeight(
                                 child: Row(
                                   children: [
-                                    Expanded(
-                                      child: TextButton.icon(
-                                        onPressed: () {
-                                          // _launchUrl(postsData.posts[i].link);
-                                        },
-                                        label: Text('Visit'),
-                                        icon: Icon(Icons.link),
-                                      ),
-                                    ),
-                                    const VerticalDivider(),
-                                    Expanded(
-                                      child: TextButton.icon(
-                                        onPressed: () {},
-                                        label: Text('Buy'),
-                                        icon: Icon(Icons.shopping_bag),
-                                      ),
-                                    ),
+                                    Spacer(),
+                                    // Expanded(
+                                    //   child: TextButton.icon(
+                                    //     onPressed: () {
+                                    //       // _launchUrl(postsData.posts[i].link);
+                                    //     },
+                                    //     label: Text('Visit'),
+                                    //     icon: Icon(Icons.link),
+                                    //   ),
+                                    // ),
+                                    // const VerticalDivider(),
+                                    // Expanded(
+                                    //   child: TextButton.icon(
+                                    //     onPressed: () {},
+                                    //     label: Text('Buy'),
+                                    //     icon: Icon(Icons.shopping_bag),
+                                    //   ),
+                                    // ),
                                     const VerticalDivider(),
                                     Expanded(
                                       child: TextButton.icon(

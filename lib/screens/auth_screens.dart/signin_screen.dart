@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:furniture_app/screens/auth_screens.dart/signup_screen.dart';
 import 'package:furniture_app/screens/home_screen.dart';
 import 'package:furniture_app/utils/constants.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/auth.dart';
 
 class SignInScreen extends StatefulWidget {
   static const String ROUTE_NAME = '/signInScreen';
@@ -10,6 +13,27 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  Future<void> login() async {
+    try {
+      final authData = Provider.of<Auth>(context, listen: false);
+      await authData.login(
+        emailController.text,
+        passwordController.text,
+      );
+
+      Navigator.of(context).pushReplacementNamed(HomeScreen.ROUTE_NAME);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error Ocurred'),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,6 +63,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       height: 16,
                     ),
                     TextFormField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         hintText: 'Email',
                         labelText: 'Email',
@@ -50,6 +75,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       height: 8,
                     ),
                     TextFormField(
+                      controller: passwordController,
                       decoration: InputDecoration(
                         hintText: 'Password',
                         labelText: 'Password',
@@ -64,10 +90,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       height: 48,
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context)
-                              .pushReplacementNamed(HomeScreen.ROUTE_NAME);
-                        },
+                        onPressed: login,
                         child: Text('Login'),
                         style: ElevatedButton.styleFrom(
                           primary: mainColor,

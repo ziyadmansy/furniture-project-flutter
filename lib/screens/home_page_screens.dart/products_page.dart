@@ -170,28 +170,31 @@ class _ProductsPageState extends State<ProductsPage> {
                                 ),
                               ),
                               Divider(),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: TextButton.icon(
-                                      onPressed: () {
-                                        // _launchUrl(postsData.products[i].link);
-                                      },
-                                      label: Text('Vist'),
-                                      icon: Icon(Icons.link),
+                              IntrinsicHeight(
+                                child: Row(
+                                  children: [
+                                    Spacer(),
+                                    // Expanded(
+                                    //   child: TextButton.icon(
+                                    //     onPressed: () {
+                                    //       // _launchUrl(postsData.products[i].link);
+                                    //     },
+                                    //     label: Text('Vist'),
+                                    //     icon: Icon(Icons.link),
+                                    //   ),
+                                    // ),
+                                    VerticalDivider(),
+                                    Expanded(
+                                      child: TextButton.icon(
+                                        onPressed: () async {
+                                          await _launchUrl('tel:01023843232');
+                                        },
+                                        label: Text('Contact'),
+                                        icon: FaIcon(FontAwesomeIcons.phone),
+                                      ),
                                     ),
-                                  ),
-                                  VerticalDivider(),
-                                  Expanded(
-                                    child: TextButton.icon(
-                                      onPressed: () async {
-                                        await _launchUrl('tel:01023843232');
-                                      },
-                                      label: Text('Contact'),
-                                      icon: FaIcon(FontAwesomeIcons.phone),
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ],
                           ),

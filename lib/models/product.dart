@@ -25,7 +25,7 @@ class Product {
       cost: double.parse(json['cost'].toString()),
       material: json['material'].toString(),
       imgUrl: (json['img_url'] as String) ??
-          'https://paulvanderlaken.files.wordpress.com/2020/02/post-box-11.jpg',
+          'https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_21/1570968/screen_shot_2020-05-19_at_11-36-02_am.png',
     );
   }
 }

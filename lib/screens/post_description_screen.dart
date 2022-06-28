@@ -69,7 +69,9 @@ class _PostsDescriptionScreenState extends State<PostsDescriptionScreen> {
                 height: 48,
                 width: screenWidth,
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                   icon: Icon(Icons.shopping_bag),
                   label: Text('Add to Cart'),
                   style: ElevatedButton.styleFrom(
